@@ -17,8 +17,7 @@ variable "VCNname" {
 }
 
 variable "ADs" {
-  #default = ["unja:EU-FRANKFURT-1-AD-1", "unja:EU-FRANKFURT-1-AD-2", "unja:EU-FRANKFURT-1-AD-3"]
-  default = ["uFjs:US-ASHBURN-AD-1", "uFjs:US-ASHBURN-AD-1", "uFjs:US-ASHBURN-AD-1"]
+  default = ["unja:EU-FRANKFURT-1-AD-1", "unja:EU-FRANKFURT-1-AD-2", "unja:EU-FRANKFURT-1-AD-3"]
 }
 
 variable "Shapes" {
@@ -27,18 +26,11 @@ variable "Shapes" {
 
 variable "Images" {
  # Oracle-Linux-7.7-2020.02.21-0 in Frankfurt
- # default = ["ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa4cmgko5la45jui5cuju7byv6dgnfnjbxhwqxaei3q4zjwlliptuq"]
-
- # Oracle-Linux-7.7-2020.02.21-0 in Ashburn
- default = ["ocid1.image.oc1.iad.aaaaaaaavzjw65d6pngbghgrujb76r7zgh2s64bdl4afombrdocn4wdfrwdq"]
+ default = ["ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa4cmgko5la45jui5cuju7byv6dgnfnjbxhwqxaei3q4zjwlliptuq"]
 }
 
-variable "webservice_ports" {
+variable "httpx_ports" {
   default = ["80","443"]
-}
-
-variable "bastion_ports" {
-  default = ["22"]
 }
 
 variable "FoggyKitchen_ATP_database_cpu_core_count" {

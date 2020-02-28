@@ -37,7 +37,7 @@ resource "oci_core_network_security_group_security_rule" "FoggyKitchenWebSecurit
 }
 
 resource "oci_core_network_security_group_security_rule" "FoggyKitchenWebSecurityIngressGroupRules" {
-    for_each = toset(var.webservice_ports)
+    for_each = toset(var.httpx_ports)
 
     network_security_group_id = oci_core_network_security_group.FoggyKitchenWebSecurityGroup.id
     direction = "INGRESS"
