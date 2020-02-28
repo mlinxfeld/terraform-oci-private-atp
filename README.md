@@ -3,6 +3,12 @@
 ## Project description
 
 In this repository, I have documented my hands on experience with Terrafrom for the purpose of OCI ATP Private Endpoint deployment. This set of HCL based Terraform files whioch can customized according to any requirements.   
+## Topology Diagram 
+
+With the usage of this example HCL code you can build topology documented by diagram below. This topology is extremly simplified for education purposes and rather cannot be used for production implementations.
+
+![](terraform-oci-private-atp.jpg)
+
 ## How to use code 
 
 ### STEP 1.
@@ -11,7 +17,7 @@ Clone the repo from github by executing the command as follows and then go to te
 
 ```
 [opc@terraform-server opc]$ git clone https://github.com/mlinxfeld/terraform-oci-private-atp.git
-Cloning into 'terraform-oci-autoscale'...
+Cloning into 'terraform-oci-private-atp'...
 remote: Enumerating objects: 19, done.
 remote: Counting objects: 100% (19/19), done.
 remote: Compressing objects: 100% (16/16), done.
