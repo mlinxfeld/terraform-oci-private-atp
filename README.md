@@ -3,7 +3,7 @@
 ## Project description
 
 In this repository, I have documented my hands on experience with Terrafrom for the purpose of OCI ATP Private Endpoint deployment. This set of HCL based Terraform files can customized according to any requirements.  
- 
+
 ## Topology Diagram 
 
 With the usage of this example HCL code you can build topology documented by diagram below. This topology is extremly simplified for education purposes and rather cannot be used for production implementations.
@@ -17,43 +17,43 @@ With the usage of this example HCL code you can build topology documented by dia
 Clone the repo from github by executing the command as follows and then go to terraform-oci-private-atp directory:
 
 ```
-[opc@terraform-server opc]$ git clone https://github.com/mlinxfeld/terraform-oci-private-atp.git
+[opc@terraform-server ~]$ git clone https://github.com/mlinxfeld/terraform-oci-private-atp.git
 Cloning into 'terraform-oci-private-atp'...
-remote: Enumerating objects: 19, done.
-remote: Counting objects: 100% (19/19), done.
-remote: Compressing objects: 100% (16/16), done.
-remote: Total 19 (delta 3), reused 19 (delta 3), pack-reused 0
-Unpacking objects: 100% (19/19), done.
+remote: Enumerating objects: 45, done.
+remote: Counting objects: 100% (45/45), done.
+remote: Compressing objects: 100% (31/31), done.
+remote: Total 45 (delta 19), reused 40 (delta 14), pack-reused 0
+Unpacking objects: 100% (45/45), done.
 
-[opc@terraform-server opc]$ cd terraform-oci-private-atp/
+[opc@terraform-server ~]$ cd terraform-oci-private-atp/
 
 [opc@terraform-server terraform-oci-private-atp]$ ls -latr
-total 76
--rw-r--r--   1 opc opc     442 27 Feb 09:56 dhcp_options.tf
--rw-r--r--   1 opc opc     250 27 Feb 09:56 internet_gateway.tf
--rw-r--r--   1 opc opc     235 27 Feb 09:56 natgateway.tf
--rw-r--r--   1 opc opc     431 27 Feb 09:56 route1.tf
--rw-r--r--   1 opc opc     422 27 Feb 09:56 route2.tf
--rw-r--r--   1 opc opc     224 27 Feb 09:56 vcn.tf
--rw-r--r--   1 opc opc     238 27 Feb 10:00 provider.tf
--rw-r--r--   1 opc opc     775 27 Feb 10:04 security_group.tf
--rw-r--r--   1 opc opc    1524 27 Feb 10:43 atp.tf
--rw-r--r--   1 opc opc     185 27 Feb 10:48 compartment.tf
--rw-r--r--   1 opc opc     432 27 Feb 10:53 subnet_atp_endpoint.tf
-drwxr-xr-x  32 opc opc    1024 27 Feb 10:57 ..
--rw-r--r--   1 opc opc     147 27 Feb 11:33 sqlnet.ora
--rw-r--r--   1 opc opc     657 27 Feb 12:50 atp_wallet.tf
-drwxr-xr-x  12 opc opc     384 27 Feb 14:18 .git
--rw-r--r--   1 opc opc     416 28 Feb 12:16 subnet_webserver.tf
--rw-r--r--   1 opc opc    1848 28 Feb 12:17 variables.tf
--rwxr-xr-x   1 opc opc    1199 28 Feb 12:18 webserver1.tf
--rw-r--r--   1 opc opc    2605 28 Feb 12:19 security_group_rule.tf
--rw-r--r--@  1 opc opc      83 28 Feb 13:33 flask_atp.sh
--rw-r--r--   1 opc opc     702 28 Feb 13:46 flask_atp.py
--rw-r--r--@  1 opc opc  960361 28 Feb 14:12 terraform-oci-private-atp.jpg
--rw-r--r--   1 opc opc    4745 28 Feb 14:13 config_mgmt_on_webserver1.tf
--rw-r--r--@  1 opc opc    6983 28 Feb 14:45 README.md
-drwxr-xr-x  25 opc opc     800 28 Feb 14:45 .
+total 1044
+drwx------. 22 opc opc   4096 03-01 17:49 ..
+-rw-rw-r--.  1 opc opc   7643 03-01 17:49 README.md
+-rw-rw-r--.  1 opc opc    185 03-01 17:49 compartment.tf
+-rw-rw-r--.  1 opc opc    657 03-01 17:49 atp_wallet.tf
+-rw-rw-r--.  1 opc opc   1524 03-01 17:49 atp.tf
+-rw-rw-r--.  1 opc opc    422 03-01 17:49 route2.tf
+-rw-rw-r--.  1 opc opc    431 03-01 17:49 route1.tf
+-rw-rw-r--.  1 opc opc    238 03-01 17:49 provider.tf
+-rw-rw-r--.  1 opc opc    235 03-01 17:49 natgateway.tf
+-rw-rw-r--.  1 opc opc    250 03-01 17:49 internet_gateway.tf
+-rw-rw-r--.  1 opc opc     83 03-01 17:49 flask_atp.sh
+-rw-rw-r--.  1 opc opc    701 03-01 17:49 flask_atp.py
+-rw-rw-r--.  1 opc opc    442 03-01 17:49 dhcp_options.tf
+-rw-rw-r--.  1 opc opc   4856 03-01 17:49 config_mgmt_on_webserver1.tf
+-rw-rw-r--.  1 opc opc    416 03-01 17:49 subnet_webserver.tf
+-rw-rw-r--.  1 opc opc    432 03-01 17:49 subnet_atp_endpoint.tf
+-rw-rw-r--.  1 opc opc    147 03-01 17:49 sqlnet.ora
+-rw-rw-r--.  1 opc opc    775 03-01 17:49 security_group.tf
+-rw-rw-r--.  1 opc opc   2605 03-01 17:49 security_group_rule.tf
+-rwxrwxr-x.  1 opc opc   1199 03-01 17:49 webserver1.tf
+-rw-rw-r--.  1 opc opc    224 03-01 17:49 vcn.tf
+-rw-rw-r--.  1 opc opc   1619 03-01 17:49 variables.tf
+-rw-rw-r--.  1 opc opc 960361 03-01 17:49 terraform-oci-private-atp.jpg
+drwxrwxr-x.  8 opc opc   4096 03-01 17:49 .git
+drwxrwxr-x.  3 opc opc   4096 03-01 17:49 .
 
 ```
 
