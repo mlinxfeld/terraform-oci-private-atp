@@ -116,7 +116,7 @@ provisioner "remote-exec" {
   inline = ["echo '== 6. Run Flask with ATP access'",
             "sudo -u root python3 --version",
             "sudo -u root chmod +x /tmp/flask_atp.sh",
-            "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/flask_atp.py > /tmp/flask_atp.py",
+            "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/flask_atp.py",
             "sudo -u root nohup /tmp/flask_atp.sh > /tmp/flask_atp.log &",
             "sleep 5",
             "sudo -u root ps -ef | grep flask"]
