@@ -156,10 +156,30 @@ Do you want to perform these actions?
 
 Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
 
+Outputs:
+
+FoggyKitchenWebserver1_PublicIP = [
+  "158.101.165.174",
+
+(...)
+
 ```
 
 ### STEP 6.
-After testing the environment you can remove the OCI infra. You should just run *terraform destroy* (type **yes** for confirmation of the destroy phase):
+Confirm that Flask-based webserver accessed succefully ATP and it can show database name (pick up Public IP of webserver from the step 5):
+
+```
+
+
+[opc@terraform-server terraform-oci-private-atp]$ curl http://158.101.165.174/
+I am connected to ATP Database via private endpoint! ATP dbname taken from v$database view is EYB1POD
+
+[opc@terraform-server terraform-oci-private-atp]$
+```
+
+
+### STEP 7.
+After testing the environment you can remove the whole OCI infra. You should just run *terraform destroy* (type **yes** for confirmation of the destroy phase):
 
 ```
 [opc@terraform-server terraform-oci-private-atp]$ terraform destroy
