@@ -169,8 +169,6 @@ FoggyKitchenWebserver1_PublicIP = [
 Confirm that Flask-based webserver accessed succefully ATP and it can show database name (pick up Public IP of webserver from the step 5):
 
 ```
-
-
 [opc@terraform-server terraform-oci-private-atp]$ curl http://158.101.165.174/
 I am connected to ATP Database via private endpoint! ATP dbname taken from v$database view is EYB1POD
 
