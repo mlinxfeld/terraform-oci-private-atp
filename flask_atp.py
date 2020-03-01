@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def oracleatpcheck():
      os.environ['TNS_ADMIN'] = '/usr/lib/oracle/18.3/client64/lib/network/admin'
-     connection = cx_Oracle.connect('admin', 'BEstrO0ng_#11', 'fkatpdb1_medium')
+     connection = cx_Oracle.connect('admin', 'atp_password', 'fkatpdb1_medium')
      cursor = connection.cursor()
      rs = cursor.execute("select name from v$database")
      dbname = rs.fetchone()
