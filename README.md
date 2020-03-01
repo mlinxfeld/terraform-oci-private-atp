@@ -2,11 +2,12 @@
 
 ## Project description
 
-In this repository, I have documented my hands on experience with Terrafrom for the purpose of OCI ATP Private Endpoint deployment. This set of HCL based Terraform files can customized according to any requirements.  
+In this repository I have documented my hands-on experience with Terrafrom for the purpose of OCI ATP Private Endpoint deployment. This set of HCL based Terraform files can customized according to any requirements.  
 
 ## Topology Diagram 
 
-With the usage of this example HCL code you can build topology documented by diagram below. This topology is extremly simplified for education purposes and rather cannot be used for production implementations.
+With the usage of this example HCL code you can build topology documented by diagram below. This topology is extremly simplified for education purposes and rather cannot be used for production implementations. For accessing ATP I am using Flask-based Python code which utilizes OracleInstant Client and cx_Oracle library 
+for Python. 
 
 ![](terraform-oci-private-atp.jpg)
 
