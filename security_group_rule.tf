@@ -66,6 +66,8 @@ resource "oci_core_network_security_group_security_rule" "FoggyKitchenWebSecurit
 
 # Rules related to FoggyKitchenSSHSecurityGroup
 
+# EGRESS
+
 resource "oci_core_network_security_group_security_rule" "FoggyKitchenSSHSecurityEgressGroupRule" {
     network_security_group_id = oci_core_network_security_group.FoggyKitchenSSHSecurityGroup.id
     direction = "EGRESS"
@@ -73,6 +75,8 @@ resource "oci_core_network_security_group_security_rule" "FoggyKitchenSSHSecurit
     destination = "0.0.0.0/0"
     destination_type = "CIDR_BLOCK"
 }
+
+# INGRESS
 
 resource "oci_core_network_security_group_security_rule" "FoggyKitchenSSHSecurityIngressGroupRules" {
     network_security_group_id = oci_core_network_security_group.FoggyKitchenSSHSecurityGroup.id
