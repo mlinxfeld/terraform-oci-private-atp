@@ -16,21 +16,17 @@ variable "VCNname" {
   default = "FoggyKitchenVCN"
 }
 
-variable "ADs" {
-  default = ["unja:EU-FRANKFURT-1-AD-1", "unja:EU-FRANKFURT-1-AD-2", "unja:EU-FRANKFURT-1-AD-3"]
-}
-
 variable "Shapes" {
- default = ["VM.Standard.E2.1","VM.Standard.E2.1.Micro","VM.Standard2.1","VM.Standard.E2.1","VM.Standard.E2.2"]
+  default = ["VM.Standard.E2.1", "VM.Standard.E2.1.Micro", "VM.Standard2.1", "VM.Standard.E2.1", "VM.Standard.E2.2"]
 }
 
-variable "Images" {
- # Oracle-Linux-7.7-2020.02.21-0 in Frankfurt
- default = ["ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa4cmgko5la45jui5cuju7byv6dgnfnjbxhwqxaei3q4zjwlliptuq"]
+variable "OsImage" {
+  # Oracle-Linux-7.7-2020.02.21-0 in Frankfurt
+  default = "Oracle-Linux-7.7-2020.02.21-0"
 }
 
 variable "httpx_ports" {
-  default = ["80","443"]
+  default = ["80", "443"]
 }
 
 variable "FoggyKitchen_ATP_database_cpu_core_count" {
@@ -69,4 +65,4 @@ variable "FoggyKitchen_ATP_tde_wallet_zip_file" {
 
 variable "FoggyKitchen_ATP_database_atp_private_endpoint_label" {
   default = "FoggyKitchenATPPrivateEndpoint"
-} 
+}
