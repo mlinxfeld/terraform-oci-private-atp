@@ -37,7 +37,7 @@ resource "oci_database_autonomous_database_backup" "FoggyKitchenATPdatabaseBacku
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   source                   = "DATABASE"
   source_id                = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
-  autonomous_database_backup_id  = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
+  autonomous_database_backup_id  = oci_database_autonomous_database_backup.FoggyKitchenATPdatabaseBackup.id
   clone_type               = "FULL"
   admin_password           = var.atp_password
   compartment_id           = oci_identity_compartment.FoggyKitchenCompartment.id
