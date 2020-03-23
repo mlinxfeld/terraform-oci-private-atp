@@ -29,17 +29,11 @@ output "parallel_connection_string" {
   value = [lookup(oci_database_autonomous_database.FoggyKitchenATPdatabase.connection_strings.0.all_connection_strings, "PARALLEL", "Unavailable")]
 }
 
-resource "oci_database_autonomous_database_backup" "FoggyKitchenATPdatabaseBackup" {
-    autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
-    is_automatic = true
-    display_name = "FoggyKitchenATPdatabaseBackup"
-}
-
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   source                   = "DATABASE"
   source_id                = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
-  autonomous_database_backup_id  = oci_database_autonomous_database_backup.FoggyKitchenATPdatabaseBackup.id
   clone_type               = "FULL"
+  
   admin_password           = var.atp_password
   compartment_id           = oci_identity_compartment.FoggyKitchenCompartment.id
   cpu_core_count           = var.FoggyKitchen_ATP_database_cpu_core_count
