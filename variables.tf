@@ -74,3 +74,8 @@ variable "FoggyKitchen_ATP_tde_wallet_zip_file" {
 variable "FoggyKitchen_ATP_database_atp_private_endpoint_label" {
   default = "FoggyKitchenATPPrivateEndpoint"
 }
+
+
+variable "FoggyKitchen_ATP_database_atp_clone_private_endpoint_label" {
+  default = "FoggyKitchenATPClonePrivateEndpoint"
+}

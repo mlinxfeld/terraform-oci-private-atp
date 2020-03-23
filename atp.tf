@@ -48,7 +48,7 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   freeform_tags            = var.FoggyKitchen_ATP_database_freeform_tags
   license_model            = var.FoggyKitchen_ATP_database_license_model
   nsg_ids                  = [oci_core_network_security_group.FoggyKitchenATPSecurityGroup.id]   
-  private_endpoint_label   = var.FoggyKitchen_ATP_database_atp_private_endpoint_label
+  private_endpoint_label   = var.FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
 }
 
