@@ -12,6 +12,7 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabase" {
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
 }
 
+/*
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   source                   = "DATABASE"
   source_id                = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
@@ -29,6 +30,7 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   private_endpoint_label   = var.FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
 }
+*/
 
 data "oci_database_autonomous_databases" "FoggyKitchenATPdatabases" {
   compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
