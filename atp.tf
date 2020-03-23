@@ -31,6 +31,7 @@ output "parallel_connection_string" {
 
 resource "oci_database_autonomous_database_backup" "FoggyKitchenATPdatabaseBackup" {
     autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
+    is_automatic = "True"
     display_name = "FoggyKitchenATPdatabaseBackup"
 }
 
