@@ -11,7 +11,7 @@ data "oci_core_images" "OSImageLocal" {
 }
 
 resource "oci_core_instance" "FoggyKitchenWebserver1" {
-  availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[2], "name")
+  availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name        = "FoggyKitchenWebServer1"
   shape               = var.Shapes[0]
@@ -30,7 +30,7 @@ resource "oci_core_instance" "FoggyKitchenWebserver1" {
 }
 
 data "oci_core_vnic_attachments" "FoggyKitchenWebserver1_VNIC1_attach" {
-  availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[2], "name")
+  availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   instance_id         = oci_core_instance.FoggyKitchenWebserver1.id
 }
