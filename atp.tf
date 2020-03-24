@@ -51,8 +51,8 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseCloneFromBac
   compartment_id                = oci_identity_compartment.FoggyKitchenCompartment.id
   cpu_core_count                = var.FoggyKitchen_ATP_database_cpu_core_count
   data_storage_size_in_tbs      = var.FoggyKitchen_ATP_database_data_storage_size_in_tbs
-  db_name                       = var.FoggyKitchen_ATP_database_db_clone_name
-  display_name                  = var.FoggyKitchen_ATP_database_display_clone_name
+  db_name                       = var.FoggyKitchen_ATP_database_db_clone_from_backup_name
+  display_name                  = var.FoggyKitchen_ATP_database_display_clone_from_backup_name
   freeform_tags                 = var.FoggyKitchen_ATP_database_freeform_tags
   license_model                 = var.FoggyKitchen_ATP_database_license_model
   nsg_ids                       = [oci_core_network_security_group.FoggyKitchenATPSecurityGroup.id]   

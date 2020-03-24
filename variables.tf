@@ -45,6 +45,10 @@ variable "FoggyKitchen_ATP_database_db_clone_name" {
   default = "fkatpdb2"
 }
 
+variable "FoggyKitchen_ATP_database_db_clone_from_backup_name" {
+  default = "fkatpdb3"
+}
+
 variable "FoggyKitchen_ATP_database_defined_tags_value" {
   default = "value"
 }
@@ -55,6 +59,10 @@ variable "FoggyKitchen_ATP_database_display_name" {
 
 variable "FoggyKitchen_ATP_database_display_clone_name" {
   default = "FoggyKitchenATPClone"
+}
+
+variable "FoggyKitchen_ATP_database_display_clone_from_backup_name" {
+  default = "FoggyKitchenATPCloneFromBackup"
 }
 
 variable "FoggyKitchen_ATP_database_freeform_tags" {
