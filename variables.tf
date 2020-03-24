@@ -41,6 +41,11 @@ variable "FoggyKitchen_ATP_database_db_name" {
   default = "fkatpdb1"
 }
 
+variable "FoggyKitchen_ATP_database_db_version" {
+  default = "18c"
+}
+
+
 variable "FoggyKitchen_ATP_database_db_clone_name" {
   default = "fkatpdb2"
 }
