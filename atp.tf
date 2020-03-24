@@ -14,7 +14,6 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabase" {
 
 data "oci_database_autonomous_database_backups" "FoggyKitchenATPdatabaseBackups" {
     autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
-    compartment_id         = oci_identity_compartment.FoggyKitchenCompartment.autonomous_database_backups[0].id
 }
 
 output "FoggyKitchen_ATP_database_backup_ocid" {
