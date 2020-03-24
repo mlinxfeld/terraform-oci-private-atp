@@ -92,3 +92,7 @@ variable "FoggyKitchen_ATP_database_atp_private_endpoint_label" {
 variable "FoggyKitchen_ATP_database_atp_clone_private_endpoint_label" {
   default = "FoggyKitchenATPClonePrivateEndpoint"
 }
+
+variable "FoggyKitchen_ATP_database_atp_clone_from_backup_private_endpoint_label" {
+  default = "FoggyKitchenATPClonePrivateEndpoint"
+}
