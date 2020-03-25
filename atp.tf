@@ -13,14 +13,6 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabase" {
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
 }
 
-data "oci_database_autonomous_database_backups" "FoggyKitchenATPdatabaseBackups" {
-    autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
-}
-
-output "FoggyKitchen_ATP_database_backup_ocid" {
-  value = lookup(data.oci_database_autonomous_database_backups.FoggyKitchenATPdatabaseBackups.autonomous_database_backups[0], "id")
-}
-
 /*
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   source                   = "DATABASE"
@@ -39,6 +31,16 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   nsg_ids                  = [oci_core_network_security_group.FoggyKitchenATPSecurityGroup.id]   
   private_endpoint_label   = var.FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
+}
+*/
+
+/*
+data "oci_database_autonomous_database_backups" "FoggyKitchenATPdatabaseBackups" {
+    autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
+}
+
+output "FoggyKitchen_ATP_database_backup_ocid" {
+  value = lookup(data.oci_database_autonomous_database_backups.FoggyKitchenATPdatabaseBackups.autonomous_database_backups[0], "id")
 }
 */
 
