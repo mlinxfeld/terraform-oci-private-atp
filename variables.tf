@@ -41,7 +41,7 @@ variable "FoggyKitchen_ATP_database_db_name" {
 }
 
 variable "FoggyKitchen_ATP_database_db_version" {
-  default = "18c"
+  default = "19c"
 }
 
 

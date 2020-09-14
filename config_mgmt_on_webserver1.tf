@@ -92,10 +92,9 @@ resource "null_resource" "FoggyKitchenWebserver1_ConfigMgmt" {
       timeout     = "10m"
     }
     inline = ["echo '== 4. Unzip TDE wallet zip file'",
-      "sudo -u root unzip /tmp/${var.FoggyKitchen_ATP_tde_wallet_zip_file} -d /usr/lib/oracle/18.3/client64/lib/network/admin/",
-
+      "sudo -u root unzip -o /tmp/${var.FoggyKitchen_ATP_tde_wallet_zip_file} -d /usr/lib/oracle/18.3/client64/lib/network/admin/",
       "echo '== 5. Move sqlnet.ora to /usr/lib/oracle/18.3/client64/lib/network/admin/'",
-    "sudo -u root cp /tmp/sqlnet.ora /usr/lib/oracle/18.3/client64/lib/network/admin/"]
+      "sudo -u root cp /tmp/sqlnet.ora /usr/lib/oracle/18.3/client64/lib/network/admin/"]
   }
 
 }
