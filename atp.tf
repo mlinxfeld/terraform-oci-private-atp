@@ -13,6 +13,26 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabase" {
   subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
 }
 
+
+resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseRefreshableClone" {
+  source                   = "CLONE_TO_REFRESHABLE"
+  source_id                = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
+  refreshable_mode         = "MANUAL"
+  admin_password           = ""
+  compartment_id           = oci_identity_compartment.FoggyKitchenCompartment.id
+  cpu_core_count           = var.FoggyKitchen_ATP_database_cpu_core_count
+  data_storage_size_in_tbs = var.FoggyKitchen_ATP_database_data_storage_size_in_tbs
+  db_name                  = var.FoggyKitchen_ATP_database_db_clone_name
+  db_version               = var.FoggyKitchen_ATP_database_db_version
+  display_name             = var.FoggyKitchen_ATP_database_display_refreshable_clone_name
+  freeform_tags            = var.FoggyKitchen_ATP_database_freeform_tags
+  license_model            = var.FoggyKitchen_ATP_database_license_model
+  nsg_ids                  = [oci_core_network_security_group.FoggyKitchenATPSecurityGroup.id]   
+  private_endpoint_label   = var.FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
+  subnet_id                = oci_core_subnet.FoggyKitchenATPEndpointSubnet.id      
+}
+
+
 /*
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseClone" {
   source                   = "DATABASE"

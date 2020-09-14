@@ -65,6 +65,10 @@ variable "FoggyKitchen_ATP_database_display_clone_name" {
   default = "FoggyKitchenATPClone"
 }
 
+variable "FoggyKitchen_ATP_database_display_refreshable_clone_name" {
+  default = "FoggyKitchenATPRefreshableClone"
+}
+
 variable "FoggyKitchen_ATP_database_display_clone_from_backup_name" {
   default = "FoggyKitchenATPCloneFromBackup"
 }
@@ -81,6 +85,10 @@ variable "FoggyKitchen_ATP_database_license_model" {
 
 variable "FoggyKitchen_ATP_tde_wallet_zip_file" {
   default = "tde_wallet_fkatpdb1.zip"
+}
+
+variable "FoggyKitchen_ATP_tde_wallet_zip_file2" {
+  default = "tde_wallet_fkatpdb2.zip"
 }
 
 variable "FoggyKitchen_ATP_database_atp_private_endpoint_label" {
