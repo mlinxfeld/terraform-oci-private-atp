@@ -5,7 +5,7 @@ import json
 def query_source_atp():
     os.environ['TNS_ADMIN'] = '/usr/lib/oracle/18.3/client64/lib/network/admin'
     print("Connecting to source ATP ad ATP_USER...")
-    connection2 = cx_Oracle.connect('atp_user', 'BEstrO0ng_#11', 'fkatpdb1_medium')
+    connection2 = cx_Oracle.connect('atp_user', 'BEstrO0ng_#11', 'atp_alias')
     cursor2 = connection2.cursor()
     print("Fetching data from foggykitchen_table table (ATP_USER)...")
     rs = cursor2.execute("select id, my_key, my_data from foggykitchen_table order by id")

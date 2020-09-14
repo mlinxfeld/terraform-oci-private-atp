@@ -1,7 +1,7 @@
-resource "oci_core_instance" "FoggyKitchenWebserver1" {
+resource "oci_core_instance" "FoggyKitchenWebserver2" {
   availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
-  display_name        = "FoggyKitchenWebserver1"
+  display_name        = "FoggyKitchenWebServer2"
   shape               = var.Shapes[0]
   subnet_id           = oci_core_subnet.FoggyKitchenWebSubnet.id
   source_details {
