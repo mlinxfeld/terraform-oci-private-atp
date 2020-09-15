@@ -116,7 +116,7 @@ resource "null_resource" "FoggyKitchenWebserver1_ConfigMgmt" {
 }
 
 resource "null_resource" "FoggyKitchenWebserver1_Update_Source_ATP" {
-  depends_on = [null_resource.FoggyKitchenWebserver1_ConfigMgmt, oci_database_autonomous_database.FoggyKitchenATPdatabaseRefreshableClone]
+  depends_on = [null_resource.FoggyKitchenWebserver1_ConfigMgmt]
 
   provisioner "file" {
     connection {
@@ -156,8 +156,8 @@ resource "null_resource" "FoggyKitchenWebserver1_Update_Source_ATP" {
       agent       = false
       timeout     = "10m"
     }
-    source      = "flask/query_source_atp.py"
-    destination = "/tmp/query_source_atp.py"
+    source      = "flask/update_source_atp_second_time.py"
+    destination = "/tmp/update_source_atp_second_time.py"
   }
 
   provisioner "file" {
@@ -170,8 +170,36 @@ resource "null_resource" "FoggyKitchenWebserver1_Update_Source_ATP" {
       agent       = false
       timeout     = "10m"
     }
-    source      = "flask/query_source_atp.sh"
-    destination = "/tmp/query_source_atp.sh"
+    source      = "flask/update_source_atp_second_time.sh"
+    destination = "/tmp/update_source_atp_second_time.sh"
+  }
+
+  provisioner "file" {
+    connection {
+      type        = "ssh"
+      user        = "opc"
+      host        = data.oci_core_vnic.FoggyKitchenWebserver1_VNIC1.public_ip_address
+      private_key = file(var.private_key_oci)
+      script_path = "/home/opc/myssh.sh"
+      agent       = false
+      timeout     = "10m"
+    }
+    source      = "flask/query_atp.py"
+    destination = "/tmp/query_atp.py"
+  }
+
+  provisioner "file" {
+    connection {
+      type        = "ssh"
+      user        = "opc"
+      host        = data.oci_core_vnic.FoggyKitchenWebserver1_VNIC1.public_ip_address
+      private_key = file(var.private_key_oci)
+      script_path = "/home/opc/myssh.sh"
+      agent       = false
+      timeout     = "10m"
+    }
+    source      = "flask/query_atp.sh"
+    destination = "/tmp/query_atp.sh"
   }
 
   provisioner "remote-exec" {
@@ -190,10 +218,13 @@ resource "null_resource" "FoggyKitchenWebserver1_Update_Source_ATP" {
       "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/update_source_atp.py",
       "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_name}_medium/g' /tmp/update_source_atp.py",
       "sudo -u root /tmp/update_source_atp.sh",
-      "sudo -u root chmod +x /tmp/query_source_atp.sh",
-      "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/query_source_atp.py",
-      "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_name}_medium/g' /tmp/query_source_atp.py",
-      "sudo -u root /tmp/query_source_atp.sh"
+      "sudo -u root chmod +x /tmp/update_source_atp_second_time.sh",
+      "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/update_source_atp_second_time.py",
+      "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_name}_medium/g' /tmp/update_source_atp_second_time.py",
+      "sudo -u root chmod +x /tmp/query_atp.sh",
+      "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/query_atp.py",
+      "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_name}_medium/g' /tmp/query_atp.py",
+      "sudo -u root /tmp/query_atp.sh"
     ]
   }
 

@@ -1,5 +1,5 @@
 resource "null_resource" "FoggyKitchenWebserver2_ConfigMgmt" {
-  depends_on = [oci_core_instance.FoggyKitchenWebserver2, oci_database_autonomous_database.FoggyKitchenATPdatabaseRefreshableClone, local_file.FoggyKitchen_ATP_database_wallet_file2]
+  depends_on = [oci_core_instance.FoggyKitchenWebserver2, oci_database_autonomous_database.FoggyKitchenATPdatabase, local_file.FoggyKitchen_ATP_database_wallet_file]
 
   provisioner "remote-exec" {
     connection {
@@ -128,8 +128,8 @@ resource "null_resource" "FoggyKitchenWebserver2_Query_Refreshable_Clone_ATP" {
       agent       = false
       timeout     = "10m"
     }
-    source      = "flask/query_source_atp.py"
-    destination = "/tmp/query_source_atp.py"
+    source      = "flask/query_atp.py"
+    destination = "/tmp/query_atp.py"
   }
 
   provisioner "file" {
@@ -142,8 +142,8 @@ resource "null_resource" "FoggyKitchenWebserver2_Query_Refreshable_Clone_ATP" {
       agent       = false
       timeout     = "10m"
     }
-    source      = "flask/query_source_atp.sh"
-    destination = "/tmp/query_source_atp.sh"
+    source      = "flask/query_atp.sh"
+    destination = "/tmp/query_atp.sh"
   }
 
   provisioner "remote-exec" {
@@ -158,10 +158,10 @@ resource "null_resource" "FoggyKitchenWebserver2_Query_Refreshable_Clone_ATP" {
     }
     inline = ["echo '== 6. Upload data to source ATP'",
       "sudo -u root python3 --version",
-      "sudo -u root chmod +x /tmp/query_source_atp.sh",
-      "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/query_source_atp.py",
-      "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_clone_name}_medium/g' /tmp/query_source_atp.py",
-      "sudo -u root /tmp/query_source_atp.sh"
+      "sudo -u root chmod +x /tmp/query_atp.sh",
+      "sudo -u root sed -i 's/atp_password/${var.atp_password}/g' /tmp/query_atp.py",
+      "sudo -u root sed -i 's/atp_alias/${var.FoggyKitchen_ATP_database_db_clone_name}_medium/g' /tmp/query_atp.py",
+      "sudo -u root /tmp/query_atp.sh"
     ]
   }
 

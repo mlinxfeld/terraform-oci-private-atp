@@ -15,6 +15,7 @@ resource "oci_database_autonomous_database" "FoggyKitchenATPdatabase" {
 
 
 resource "oci_database_autonomous_database" "FoggyKitchenATPdatabaseRefreshableClone" {
+  depends_on = [null_resource.FoggyKitchenWebserver1_Update_Source_ATP] 
   source                   = "CLONE_TO_REFRESHABLE"
   source_id                = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
   refreshable_mode         = "MANUAL"

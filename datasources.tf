@@ -34,3 +34,15 @@ data "oci_database_autonomous_databases" "FoggyKitchenATPdatabases" {
   compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name = var.FoggyKitchen_ATP_database_display_name
 }
+
+data "oci_database_autonomous_database_wallet" "FoggyKitchen_ATP_database_Refreshable_Clone_wallet" {
+  autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabaseRefreshableClone.id
+  password               = random_string.wallet_password.result
+  base64_encode_content  = "true"
+}
+
+data "oci_database_autonomous_database_wallet" "FoggyKitchen_ATP_database_wallet" {
+  autonomous_database_id = oci_database_autonomous_database.FoggyKitchenATPdatabase.id
+  password               = random_string.wallet_password.result
+  base64_encode_content  = "true"
+}
