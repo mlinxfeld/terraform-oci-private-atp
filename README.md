@@ -86,7 +86,8 @@ export TF_VAR_private_key_path="/tmp/oci_api_key.pem"
 export TF_VAR_region="eu-frankfurt-1"
 export TF_VAR_private_key_oci="/tmp/id_rsa"
 export TF_VAR_public_key_oci="/tmp/id_rsa.pub"
-export TF_VAR_atp_password='BEstrO0ng_#11'
+export TF_VAR_ATP_ADMIN_password='BEstrO0ng_#11'
+export TF_VAR_USER_ADMIN_password='BEstrO0ng_#11'
 
 [opc@terraform-server terraform-oci-private-atp]$ source setup_oci_tf_vars.sh
 ```

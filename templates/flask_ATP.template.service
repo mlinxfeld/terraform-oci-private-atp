@@ -1,0 +1,12 @@
+[Unit]
+Description=A Gunicorn example to serve Flask project
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/tmp
+Environment="PATH=/tmp"
+ExecStart=/bin/bash -c "/usr/local/bin/gunicorn --bind 0.0.0.0:80 flask_ATP:app"
+
+[Install]
+WantedBy=multi-user.target
