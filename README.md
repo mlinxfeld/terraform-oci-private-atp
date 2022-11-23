@@ -13,7 +13,29 @@ for Python.
 
 ## How to use code 
 
-### STEP 1.
+### Deploy Using Oracle Resource Manager
+
+1. Click [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/mlinxfeld/terraform-oci-private-atp/releases/latest/download/terraform-oci-private-atp-stack-latest.zip)
+
+    If you aren't already signed in, when prompted, enter the tenancy and user credentials.
+
+2. Review and accept the terms and conditions.
+
+3. Select the region where you want to deploy the stack.
+
+4. Follow the on-screen prompts and instructions to create the stack.
+
+5. After creating the stack, click **Terraform Actions**, and select **Plan**.
+
+6. Wait for the job to be completed, and review the plan.
+
+    To make any changes, return to the Stack Details page, click **Edit Stack**, and make the required changes. Then, run the **Plan** action again.
+
+7. If no further changes are necessary, return to the Stack Details page, click **Terraform Actions**, and select **Apply**. 
+
+### Deploy Using the Terraform CLI
+
+#### STEP 1.
 
 Clone the repo from github by executing the command as follows and then go to terraform-oci-private-atp directory:
 
@@ -58,7 +80,7 @@ drwxrwxr-x.  3 opc opc   4096 03-01 17:49 .
 
 ```
 
-### STEP 2.
+#### STEP 2.
 
 Within web browser go to URL: https://www.terraform.io/downloads.html. Find your platform and download the latest version of your terraform runtime. Add directory of terraform binary into PATH and check terraform version:
 
@@ -73,7 +95,7 @@ Your version of Terraform is out of date! The latest version
 is 0.12.17. You can update by downloading from https://www.terraform.io/downloads.html
 ```
 
-### STEP 3. 
+#### STEP 3. 
 Next create environment file with TF_VARs:
 
 ```
@@ -92,7 +114,7 @@ export TF_VAR_USER_ADMIN_password='BEstrO0ng_#11'
 [opc@terraform-server terraform-oci-private-atp]$ source setup_oci_tf_vars.sh
 ```
 
-### STEP 4.
+#### STEP 4.
 Run *terraform init* with upgrade option just to download the lastest neccesary providers:
 
 ```
@@ -130,7 +152,7 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-### STEP 5.
+#### STEP 5.
 Run *terraform apply* to provision the content of this code (type **yes** to confirm the the apply phase):
 
 ```
@@ -167,7 +189,7 @@ FoggyKitchenWebserver1_PublicIP = [
 
 ```
 
-### STEP 6.
+#### STEP 6.
 Confirm that Flask-based webserver accessed succefully ATP and it can show database name (pick up Public IP of webserver from the step 5):
 
 ```
@@ -178,7 +200,7 @@ I am connected to ATP Database via private endpoint! ATP dbname taken from v$dat
 ```
 
 
-### STEP 7.
+#### STEP 7.
 After testing the environment you can remove the whole OCI infra. You should just run *terraform destroy* (type **yes** for confirmation of the destroy phase):
 
 ```
