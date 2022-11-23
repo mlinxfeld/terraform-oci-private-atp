@@ -1,0 +1,333 @@
+title: "FoggyKitchen.com - Terraform OCI Private ATP."
+description: "FoggyKitchen.com - Terraform OCI Private ATP."
+stackDescription: "FoggyKitchen.com - Terraform OCI Private ATP."
+schemaVersion: 1.1.0
+version: "20201028"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - region
+  - FoggyKitchen_ATP_database_freeform_tags
+  - oracle_instant_client_version
+  - oracle_instant_client_version_short
+  - httpx_ports
+  - FoggyKitchen_ATP_tde_wallet_zip_file1
+  - FoggyKitchen_ATP_tde_wallet_zip_file2
+  - FoggyKitchen_ATP_database_atp_private_endpoint_label
+  - FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
+  - FoggyKitchen_ATP_database_atp_clone_from_backup_private_endpoint_label
+
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - ATP_ADMIN_password
+  - ATP_USER_password
+  - create_atp_refreshable_clone
+  - create_atp_clone
+  - create_atp_clone_from_backup
+  - update_source_atp_data_2n_time
+  - show_advanced 
+
+- title: "ATP Optional Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - FoggyKitchen_ATP_database_cpu_core_count
+  - FoggyKitchen_ATP_database_data_storage_size_in_tbs
+  - FoggyKitchen_ATP_database_db_name
+  - FoggyKitchen_ATP_database_display_name
+  - FoggyKitchen_ATP_database_license_model
+  - FoggyKitchen_ATP_database_db_version
+  - ATP_ADMIN_name
+  - ATP_USER_name
+
+- title: "ATP Refreshable Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - FoggyKitchen_ATP_database_db_clone_name
+  - FoggyKitchen_ATP_database_db_clone_from_backup_name
+  - FoggyKitchen_ATP_database_display_refreshable_clone_name
+  - FoggyKitchen_ATP_database_display_clone_from_backup_name
+
+- title: "VCN/Compute Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - VCN-CIDR
+  - VCNname
+  - Shape
+  - FlexShapeOCPUS
+  - FlexShapeMemory
+  - instance_os
+  - linux_os_version
+
+
+variables:
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
+
+  # General Configuration
+
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  compartment_ocid:
+    title: "Compartment OCID"
+    description: "Choose Comparment where you deploy your ATP Database"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  region:
+    title: "Region"
+    description: "Choose Region where you deploy your ATP Database"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  ATP_ADMIN_password:
+    type: password
+    required: true
+    visibile: true
+    title: "ATP Database Password for ADMIN User."
+    description: "The password must start with a letter, and it can contain letters (uppercase, lowercase), numbers, and the symbols _ $ # ($ symbol cannot be the last character)."
+    minLength: 12
+    maxLength: 30
+    pattern: ^[A-Za-z][A-Za-z0-9_#\$]+[A-Za-z0-9_#]$ 
+
+  ATP_USER_password:
+    type: password
+    required: true
+    visibile: true
+    title: "ATP Database Password for Application User."
+    description: "The password must start with a letter, and it can contain letters (uppercase, lowercase), numbers, and the symbols _ $ # ($ symbol cannot be the last character)."
+    minLength: 12
+    maxLength: 30
+    pattern: ^[A-Za-z][A-Za-z0-9_#\$]+[A-Za-z0-9_#]$ 
+
+  create_atp_refreshable_clone:
+    type: boolean
+    title: "Create ATP Refreshable Clone?"
+    description: "Choose if you want to create ATP Refreshable Clone."
+    visible: true
+    default: false
+
+  create_atp_clone:
+    type: boolean
+    title: "Create ATP Clone?"
+    description: "Choose if you want to create ATP Clone directly from already existing source ATP Instance."
+    visible: true
+    default: false
+
+  create_atp_clone_from_backup:
+    type: boolean
+    title: "Create ATP Clone from Backup?"
+    description: "Choose if you want to create ATP Clone from Backup of already existing source ATP Instance."
+    visible: true
+    default: false
+
+  update_source_atp_data_2n_time:
+    type: boolean
+    title: "Update source ATP Instance?"
+    description: "Choose if you want to update source ATP instance (2nd time)."
+    visible: true
+    default: false
+
+  # Optional Configuration
+
+  FoggyKitchen_ATP_database_cpu_core_count:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "ATP Database CPU count"
+    description: "Choose number of CPU for your ATP Database."
+
+  FoggyKitchen_ATP_database_data_storage_size_in_tbs:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "ATP Database Data Storage Size in TB"
+    description: "Choose ATP Database Data Storage Size in TB."
+
+  FoggyKitchen_ATP_database_db_name:
+    type: string
+    title: "ATP Database Name"
+    description: "Choose ATP Database Name."
+    required: false
+
+  FoggyKitchen_ATP_database_display_name:
+    type: string
+    title: "ATP Database Display Name"
+    description: "Choose ATP Database Display Name."
+    required: false
+
+  FoggyKitchen_ATP_database_license_model:
+    type: enum
+    required: false
+    visible: true
+    title: "ATP Database License Model"
+    description: "Choose ATP Database License Model."
+    default: "LICENSE_INCLUDED"
+    enum:
+      - "LICENSE_INCLUDED"
+      - "BRING_YOUR_OWN_LICENSE"
+
+  FoggyKitchen_ATP_database_db_version:
+    type: enum
+    required: false
+    default: "19c"
+    title: "ATP Database Version"
+    description: "Choose ATP Database version."
+    enum:
+      - "19c"
+
+  ATP_ADMIN_name:
+    type: string
+    title: "ATP ADMIN User Name"
+    description: "Choose ATP ADMIN User Name."
+    required: false
+
+  ATP_USER_name:
+    type: string
+    title: "ATP Application User Name"
+    description: "Choose ATP Application User Name."
+    required: false
+
+  FoggyKitchen_ATP_database_db_clone_name:
+    type: string
+    title: "ATP Database (Refreshable) Clone Name"
+    description: "ATP Database (Refreshable) Clone Name."
+    required: false
+
+  FoggyKitchen_ATP_database_db_clone_from_backup_name:
+    type: string
+    title: "ATP Database Clone (from the Backup) Name"
+    description: "ATP Database Clone (from the Backup) Name."
+    required: false
+
+  FoggyKitchen_ATP_database_display_refreshable_clone_name:
+    type: string
+    title: "ATP Database Refreshable Clone Display Name"
+    description: "ATP Database Refreshable Clone Display Name."
+    required: false    
+
+  FoggyKitchen_ATP_database_display_clone_from_backup_name:
+    type: string
+    title: "ATP Database Clone (from the Backup) Display Name"
+    description: "ATP Database Clone (from the Backup) Display Name."
+    required: false   
+
+  VCN-CIDR:
+    type: string
+    required: false
+    pattern: "^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\/(3[0-2]|[1-2]?[0-9])$"
+    title: "VCN CIDR Block"
+    description: "Choose CIDR block for your VCN."
+
+  VCNname:
+    type: string
+    title: "VCN Name"
+    description: "VCN Name."
+    required: false  
+
+  Shape:
+    type: oci:core:instanceshape:name
+    required: false
+    title: "Instance Shape"
+    description: "A shape is a template that determines the number of CPUs, amount of memory, and other resources allocated to a newly created instance."
+    default: "VM.Standard.E4.Flex"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+
+  FlexShapeOCPUS:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 1
+    title: "Flex Shape OCPUs"
+    description: "Choose number of OCPUs for Flex Shape."
+    visible:
+      and:
+        - or:
+          - eq:
+            - Shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - Shape 
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - Shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - Shape 
+            - "VM.Optimized3.Flex"
+
+  FlexShapeMemory:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 6
+    title: "Flex Shape Memory (GB)"
+    description: "Choose number GB for Flex Shape Memory."
+    visible:
+      and:
+        - or:
+          - eq:
+            - Shape 
+            - "VM.Standard.E3.Flex"
+          - eq:
+            - Shape 
+            - "VM.Standard.E4.Flex"
+          - eq:
+            - Shape 
+            - "VM.Standard.A1.Flex"
+          - eq:
+            - Shape 
+            - "VM.Optimized3.Flex"
+  
+  instance_os:
+    type: enum
+    required: false
+    title: "Instance OS"
+    description: "An Operating System that determines the operating system for the instance."
+    default: "Oracle Linux"
+    enum:
+      - "Oracle Linux"
+
+  linux_os_version:
+    type: enum
+    required: false
+    title: "Instance OS version"
+    description: "An Operating System version that determines the operating system version for the instance."
+    enum:
+      - "9"
+      - "8"
