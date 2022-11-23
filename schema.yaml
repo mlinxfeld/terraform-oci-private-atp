@@ -20,7 +20,7 @@ variableGroups:
   - FoggyKitchen_ATP_database_atp_private_endpoint_label
   - FoggyKitchen_ATP_database_atp_clone_private_endpoint_label
   - FoggyKitchen_ATP_database_atp_clone_from_backup_private_endpoint_label
-
+  - FoggyKitchen_ATP_database_defined_tags_value
 
 - title: "Required Configuration"
   visible: true  
@@ -56,6 +56,7 @@ variableGroups:
   - FoggyKitchen_ATP_database_db_clone_name
   - FoggyKitchen_ATP_database_db_clone_from_backup_name
   - FoggyKitchen_ATP_database_display_refreshable_clone_name
+  - FoggyKitchen_ATP_database_display_clone_name
   - FoggyKitchen_ATP_database_display_clone_from_backup_name
 
 - title: "VCN/Compute Configuration"
@@ -235,6 +236,12 @@ variables:
     title: "ATP Database Refreshable Clone Display Name"
     description: "ATP Database Refreshable Clone Display Name."
     required: false    
+
+  FoggyKitchen_ATP_database_display_clone_name:
+    type: string
+    title: "ATP Database Clone Display Name"
+    description: "ATP Database Clone Display Name."
+    required: false       
 
   FoggyKitchen_ATP_database_display_clone_from_backup_name:
     type: string
